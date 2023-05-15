@@ -1,0 +1,2 @@
+# StableDiffusionTelegramBot
+通过telegram调用StableDiffusion绘图

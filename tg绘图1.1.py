@@ -51,6 +51,8 @@ def load_config():
 
     # 读取 telegram token
     TOKEN = config.get('TOKEN')
+    if len(TOKEN) == 0:
+        print(f"TOKEN为空，请检查config.txt文件")
     # print(TOKEN)
 
     # 读取白名单 id
@@ -256,7 +258,7 @@ def draw(text_to_print, chat_id):
         "hr_resize_y": hr_resize_y,
         "denoising_strength": denoising_strength,
     }
-
+    print("正在绘图")
     response = requests.post(url=f'{localurl}/sdapi/v1/txt2img', json=payload)
 
     r = response.json()
@@ -296,15 +298,17 @@ def draw(text_to_print, chat_id):
 
         # 保存图片
         image.save(temp_file, 'PNG', pnginfo=pnginfo)
+        # print(pnginfo)
 
         # 构建发送图片的 API URL
         url = f'https://api.telegram.org/bot{TOKEN}/sendPhoto'
 
+
         # 发送图片给聊天 ID
         response1 = requests.post(url, data={'chat_id': chat_id},
                                   files={'photo': open(temp_file, 'rb')})
-
-        #print(response1.json())
+        print("发送图片完成")
+        # print(response1.json())
         print("绘图完成")
 
 

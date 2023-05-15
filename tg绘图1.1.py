@@ -309,6 +309,8 @@ def draw(text_to_print, chat_id):
 
 
 def main():
+    print("From https://github.com/1803233552/StableDiffusionTelegramBot")
+    print("By DW_1803233552")
     # 读取配置
     load_config()
     print("开始监听")

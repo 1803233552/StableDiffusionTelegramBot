@@ -18,3 +18,5 @@
 
 目前可修改参数Steps（步数）、Sampler（采样方式）、CFG scale（相关性）、Seed（种子）、Size（图片大小）、Enable_hr（为true开启超分辨率）、ntags（负面词）。
 请注意ntags要放在最后。不使用参数也能运行。
+
+偶尔会报错远程主机关闭了链接，这个不用管

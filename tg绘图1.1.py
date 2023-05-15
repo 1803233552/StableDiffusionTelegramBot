@@ -195,7 +195,8 @@ def draw(text_to_print, chat_id):
     ntags = segments[1] if len(segments) > 1 else ""
 
     if ntags:
-        print("自定义ntags")
+        # print("自定义ntags")
+        print("")
     else:
         # print("ntags 为空")
         ntags = defaultNegative_prompt
@@ -288,10 +289,10 @@ def draw(text_to_print, chat_id):
         # 删除非法字符
         filename = re.sub(r'[<>:"/\\|?*]', '', shortened_text)
         filename = f'{next_number:05d}-{filename}.png'
-        print(f"filename:{filename}")
+        print(f"保存图片:{filename}")
         temp_file = os.path.join(temp_dir, filename.replace("\\", "/"))  # 使用正斜杠 / 替换生成的文件路径中的反斜杠 \，以确保路径的正确性
         temp_file = temp_file.replace("\\", "/")
-        print(f"temp_file:{temp_file}")
+        #print(f"temp_file:{temp_file}")
 
         # 保存图片
         image.save(temp_file, 'PNG', pnginfo=pnginfo)
@@ -303,7 +304,8 @@ def draw(text_to_print, chat_id):
         response1 = requests.post(url, data={'chat_id': chat_id},
                                   files={'photo': open(temp_file, 'rb')})
 
-        print(response1.json())
+        #print(response1.json())
+        print("绘图完成")
 
 
 def main():
@@ -331,9 +333,9 @@ def main():
                     update_id = result['update_id']
                     message = result.get('message')
                     if message:
-                        print(message)
+                        # print(message)
                         chat_id = str(message['chat']['id'])
-                        print(chat_id)
+                        # print(chat_id)
                         # 判断白名单是否为空，不为空则过滤
                         if CHAT_ID:
                             # 判断群组或个人是否在白名单
@@ -359,7 +361,7 @@ def main():
                             continue  # 跳过该消息，继续处理下一条消息
 
                         if text:
-                            print("最新的消息文本值：", text)
+                            # print("最新的消息文本值：", text)
 
                             if text.startswith('/ht'):
                                 text_to_print = text[3:]  # 获取 "/绘图" 后面的文本

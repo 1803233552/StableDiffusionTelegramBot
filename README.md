@@ -1,7 +1,7 @@
 # StableDiffusionTelegramBot
 通过telegram调用StableDiffusion绘图
 
-下载地址 https://wwi.lanzoup.com/i7NIx0w9br2h
+打包版下载地址 https://wwi.lanzoup.com/i7NIx0w9br2h
 
 注册tg机器人可以参考这个链接 https://hellodk.cn/post/743。
 获取你的机器人token

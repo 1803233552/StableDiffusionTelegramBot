@@ -1,5 +1,5 @@
 # StableDiffusionTelegramBot
-通过telegram调用StableDiffusion绘图
+通过轮询监听telegram的api调用StableDiffusion的api绘图
 
 打包版下载地址 https://wwi.lanzoup.com/i7NIx0w9br2h
 

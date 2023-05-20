@@ -25,6 +25,8 @@
 
 
 对机器人打出'/help'，获取默认例子提示
+![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/0cdee482-3c5c-4696-8c37-40b665803d9d)
+
 
 参数后面接':'，例如'Steps: 28'。目前可修改参数Steps（步数）、Sampler（采样方式）、CFG scale（相关性）、Seed（种子）、Size（图片大小）、Enable_hr（为true开启超分辨率，同时支持中文“高清：开”）、ntags（负面词）。可以中英文符号混用。
 

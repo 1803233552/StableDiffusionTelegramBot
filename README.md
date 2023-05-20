@@ -6,6 +6,7 @@
 
 注册tg机器人和获取chatId可以参考这个链接 https://hellodk.cn/post/743。
 获取你的机器人token
+一些参数配置可以参考这个 https://www.dengnz.com/2020/11/23/telegram-%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9a%84%e7%94%b3%e8%af%b7%e5%92%8c%e8%ae%be%e7%bd%ae%e5%9b%be%e6%96%87%e6%95%99%e7%a8%8b/#:~:text=%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%83%B3%E6%94%B9%E5%8F%98%E5%90%8D%E5%AD%97%EF%BC%8C%20%E5%8F%AF%E4%BB%A5%E7%82%B9%20Edit%20Name%20%E7%8E%B0%E5%9C%A8%E6%88%91%E4%BB%AC%E5%85%88%E6%9D%A5%E7%82%B9%20Edit%20Description%2C%20%E7%82%B9%E5%AE%8C%E5%90%8E%E4%BC%9A%E6%8F%90%E7%A4%BA%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E5%B0%B1%E9%9A%8F%E4%BE%BF%E8%BE%93%E4%BA%86,Back%20to%20Bot%2C%20%E5%86%8D%E7%82%B9%20Edit%20Bot%20%E5%9B%9E%E5%88%B0%E5%88%9A%E6%89%8D%E7%9A%84%E9%80%89%E5%8D%95%EF%BC%8C%20%E8%BF%99%E6%AC%A1%E7%82%B9%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E5%90%8D%E5%AD%97
 
 使用方式  
 

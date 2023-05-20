@@ -5,6 +5,26 @@ import base64
 from PIL import Image, PngImagePlugin
 import re
 
+# 声明全局变量
+global TOKEN
+global CHAT_ID
+global localurl
+global temp_dir
+global max_filename_length
+global defaultSteps
+global defaultNegative_prompt
+global defaultSeed
+global defaultSampler_index
+global defaultCfg_scale
+global defaultSize
+global defaultEnable_hr
+global defaultHr_scale
+global defaultHr_resize_x
+global defaultHr_resize_y
+global defaultHr_upscaler
+global defaultHr_second_pass_steps
+global defaultDenoising_strength
+
 
 # 正常使用,保存信息，自动识别聊天对象发送，可读取自定义参数
 

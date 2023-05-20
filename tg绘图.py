@@ -311,7 +311,7 @@ def draw(text_to_print, chat_id):
         response2 = requests.post(url=f'{localurl}/sdapi/v1/png-info', json=png_payload)
         # 图片参数
         info = response2.json().get("info")
-        print(f"图片参数:{info}")
+        # print(f"图片参数:{info}")
         # 去除回车符
         info = info.replace("\n", "")
         text = info
@@ -363,7 +363,7 @@ def draw(text_to_print, chat_id):
 
         # 这里用ht_text替代了before_negative_prompt
         outInfo = f"{before_negative_prompt}  Steps: {steps}, Sampler: {encoded_sampler}, CFG scale: {cfg_scale}, Seed: {seed}, Size: {size},ntags:{negative_prompt}"
-        print(f"outInfo:{outInfo}")
+        # print(f"outInfo:{outInfo}")
 
         # 保存图片参数
         pnginfo = PngImagePlugin.PngInfo()
@@ -404,13 +404,13 @@ def draw(text_to_print, chat_id):
 
         # 这条信息的json
         data = response1.json()
-        print(data)
+        # print(data)
         print("绘图完成")
 
         # 提取 message_id 值,获取回复消息的 ID
         message_id = data['result']['message_id']
         # print("Message ID:", message_id)
-        print("发送参数")
+        # print("发送参数")
         res = requests.post(url=f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&reply_to_message_id={message_id}&text={outInfo}")
 
         print("\n")

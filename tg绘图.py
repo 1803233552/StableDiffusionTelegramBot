@@ -4,6 +4,7 @@ import io
 import base64
 from PIL import Image, PngImagePlugin
 import re
+import urllib.parse
 
 # 声明全局变量
 global TOKEN
@@ -156,6 +157,13 @@ def convert_chinese_punctuation_to_english(text):
     return text
 
 
+# 检测文本是否不为空且最后一个字符不是逗号，并在需要时添加逗号
+def add_comma(text):
+    if text and text[-1] != ',':
+        text += ','
+    return text
+
+
 def draw(text_to_print, chat_id):
     # 开始绘图
     star_text = "开始绘图"
@@ -176,8 +184,12 @@ def draw(text_to_print, chat_id):
     pattern = r"(.*?)(?=Steps:|Sampler:|CFG scale:|Seed:|Size:|ntags:|$)"
     match = re.search(pattern, text_to_print)
     ht_text = match.group(1).strip() if match else text_to_print.strip()
+    # 没有逗号结尾则添加逗号
+    ht_text = add_comma(ht_text)
+    print(ht_text)
 
-    param_text = ",".join(parts[2:]).strip() if len(parts) > 2 else ""
+
+    param_text = ",".join(parts).strip() if len(parts) > 1 else ""
 
     # 分割字符串
     segments = text_to_print.split("ntags:")
@@ -297,7 +309,63 @@ def draw(text_to_print, chat_id):
             "image": "data:image/png;base64," + i
         }
         response2 = requests.post(url=f'{localurl}/sdapi/v1/png-info', json=png_payload)
+        # 图片参数
+        info = response2.json().get("info")
+        print(f"图片参数:{info}")
+        # 去除回车符
+        info = info.replace("\n", "")
+        text = info
 
+        # 获取 Negative prompt 之前的文本
+        pattern = r"(.*?)(?=\bNegative prompt:|$)"
+        # print("pattern:", pattern)
+        match = re.search(pattern, text)
+
+        if match:
+            before_negative_prompt = match.group(1).strip()
+            # print("Before Negative prompt:", before_negative_prompt)
+        else:
+            before_negative_prompt = ""
+            # print("Before Negative prompt is empty")
+
+        # 获取 Negative prompt 的值
+        pattern = r"Negative prompt:([\s\S]*?)(?=Steps:|$)"
+        match = re.search(pattern, text)
+
+        if match:
+            negative_prompt = match.group(1).strip()
+            # print("Negative prompt:", negative_prompt)
+        else:
+            negative_prompt = ""
+            # print("Negative prompt is empty")
+
+        # 获取 Steps、Sampler、CFG scale、Seed 和 Size 的值
+        pattern = r"Steps: (\d+), Sampler: ([^,]+), CFG scale: ([^,]+), Seed: (\d+), Size: ([^,]+)"
+        match = re.search(pattern, text)
+
+        if match:
+            steps = match.group(1)
+            sampler = match.group(2)
+            cfg_scale = match.group(3)
+            seed = match.group(4)
+            size = match.group(5)
+            # print("Steps:", steps)
+            # print("Sampler:", sampler)
+            # print("CFG scale:", cfg_scale)
+            # print("Seed:", seed)
+            # print("Size:", size)
+        else:
+            print("Steps, Sampler, CFG scale, Seed, or Size not found")
+
+        # 对参数进行 URL 编码,出现在 URL 中的参数传递部分。在 URL 中，参数值应该进行 URL 编码，以确保特殊字符（如空格、加号等）被正确传递。这里的DPM++ 2M Karras不转码的话会出现错误
+        encoded_sampler = urllib.parse.quote(sampler)
+        # print("Encoded sampler:", encoded_sampler)
+
+        # 这里用ht_text替代了before_negative_prompt
+        outInfo = f"{before_negative_prompt}  Steps: {steps}, Sampler: {encoded_sampler}, CFG scale: {cfg_scale}, Seed: {seed}, Size: {size},ntags:{negative_prompt}"
+        print(f"outInfo:{outInfo}")
+
+        # 保存图片参数
         pnginfo = PngImagePlugin.PngInfo()
         pnginfo.add_text("parameters", response2.json().get("info"))
 
@@ -309,7 +377,6 @@ def draw(text_to_print, chat_id):
             if filename.endswith(".png") and "-" in filename
         ]
         max_number = max(existing_numbers) if existing_numbers else -1
-
         # 生成文件名
         next_number = max_number + 1
 
@@ -334,8 +401,18 @@ def draw(text_to_print, chat_id):
         # 发送图片给聊天 ID
         response1 = requests.post(url, data={'chat_id': chat_id}, files={'photo': open(temp_file, 'rb')})
         print("发送图片完成")
-        print(response1.json())
+
+        # 这条信息的json
+        data = response1.json()
+        print(data)
         print("绘图完成")
+
+        # 提取 message_id 值,获取回复消息的 ID
+        message_id = data['result']['message_id']
+        # print("Message ID:", message_id)
+        print("发送参数")
+        res = requests.post(url=f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&reply_to_message_id={message_id}&text={outInfo}")
+
         print("\n")
 
 

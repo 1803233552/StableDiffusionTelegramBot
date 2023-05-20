@@ -1,7 +1,8 @@
 # StableDiffusionTelegramBot
 通过轮询监听telegram的api调用StableDiffusion的api绘图。目前支持文生图。
 
-打包版下载地址 https://wwi.lanzoup.com/i7NIx0w9br2h
+打包版下载地址 https://wwi.lanzoup.com/b0fgy69gh
+密码:40ld
 
 注册tg机器人和获取chatId可以参考这个链接 https://hellodk.cn/post/743。
 获取你的机器人token

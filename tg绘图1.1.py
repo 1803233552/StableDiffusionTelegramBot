@@ -1,5 +1,4 @@
 import os
-import time
 import requests
 import io
 import base64
@@ -26,7 +25,6 @@ def load_config():
     # 声明全局变量
     global TOKEN
     global CHAT_ID
-    global delayTime
     global localurl
     global temp_dir
     global max_filename_length
@@ -45,7 +43,7 @@ def load_config():
     global defaultDenoising_strength
 
     # 读取配置文件
-    config = read_config('config.txt')
+    config = read_config('config2.0.txt')
 
     print(f"读取默认参数")
 
@@ -61,10 +59,6 @@ def load_config():
         CHAT_ID = []
     print(f"白名单:{CHAT_ID}")
 
-    # 读取刷新消息间隔
-    delayTime = int(config.get('delayTime', '5'))
-    print(f"刷新消息间隔:{delayTime}s")
-
     # 读取本地sd地址
     localurl = config.get('localurl', 'http://127.0.0.1:7860')
     print(f"本地sd地址:{localurl}")
@@ -79,12 +73,12 @@ def load_config():
     # 读取绘图默认参数
     print(f"绘图默认参数")
     # 步数
-    defaultSteps = int(config.get('defaultSteps', '28'))
+    defaultSteps = int(config.get('defaultSteps', '40'))
     print(f"步数:{defaultSteps}")
 
     # 负面词
     defaultNegative_prompt = config.get('defaultNegative_prompt',
-                                        'paintings, sketches, (worst quality:2),(low quality:2), (extra fingers:2), (extra toes:2),bad-picture-chill-75v, badhandv4, easynegative, negative_hand-neg, ng_deepnegative_v1_75t')
+                                        'EasyNegative, badhandv4, negative_hand-neg, ng_deepnegative_v1_75t, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry')
     print(f"负面词:{defaultNegative_prompt}")
 
     # 种子
@@ -130,6 +124,18 @@ def load_config():
     print(f"重绘幅度:{defaultDenoising_strength}")
 
 
+def convert_chinese_punctuation_to_english(text):
+    # 定义中文标点和对应的英文标点
+    chinese_punctuation = '，。！？；：“”‘’（）【】『』—…《》〈〉'
+    english_punctuation = ',.!?;:""\'\'()[]\'\'--...<>'
+
+    # 使用字符串的替换功能将中文标点替换为英文标点
+    for i in range(len(chinese_punctuation)):
+        text = text.replace(chinese_punctuation[i], english_punctuation[i])
+
+    return text
+
+
 def draw(text_to_print, chat_id):
     # 开始绘图
     star_text = "开始绘图"
@@ -140,6 +146,9 @@ def draw(text_to_print, chat_id):
 
     # 去除首尾空格
     text_to_print = text_to_print.strip()
+
+    # 将中文标点转换为英文标点
+    text_to_print = convert_chinese_punctuation_to_english(text_to_print)
 
     # 分割成三个部分
     parts = text_to_print.split(",")
@@ -186,6 +195,9 @@ def draw(text_to_print, chat_id):
                     size = value
                 elif key == "Enable_hr":
                     enable_hr = bool(value)
+                elif key == "高清":
+                    if value == "开":
+                        enable_hr = bool("true")
                 elif key == "Hr_upscaler":
                     hr_upscaler = value
                 elif key == "Hr_second_pass_steps":
@@ -219,11 +231,6 @@ def draw(text_to_print, chat_id):
         print("开启超分")
         hr_resize_x = int(width * hr_scale)
         hr_resize_y = int(height * hr_scale)
-        # print(type(hr_resize_x))
-    # Enable_hr = defaultEnable_hr
-    # Hr_scale = defaultHr_scale
-    # Hr_resize_x = width * Hr_scale
-    # Hr_resize_y = height * Hr_scale
 
     print("ht_text:", ht_text)
     print("Steps:", steps)
@@ -298,17 +305,16 @@ def draw(text_to_print, chat_id):
 
         # 保存图片
         image.save(temp_file, 'PNG', pnginfo=pnginfo)
-        # print(pnginfo)
+        print(temp_file)
 
         # 构建发送图片的 API URL
         url = f'https://api.telegram.org/bot{TOKEN}/sendPhoto'
 
-
+        print("开始发送图片")
         # 发送图片给聊天 ID
-        response1 = requests.post(url, data={'chat_id': chat_id},
-                                  files={'photo': open(temp_file, 'rb')})
+        response1 = requests.post(url, data={'chat_id': chat_id}, files={'photo': open(temp_file, 'rb')})
         print("发送图片完成")
-        # print(response1.json())
+        print(response1.json())
         print("绘图完成")
 
 
@@ -330,7 +336,8 @@ def main():
 
     while True:
         try:
-            params = {'offset': offset}
+            # print("发送请求")
+            params = {'offset': offset, 'timeout': 30}
             response = requests.get(url, params=params)
             data = response.json()
 
@@ -379,11 +386,7 @@ def main():
                         # 更新 offset 为最新的 update_id + 1，以排除已处理的消息
                         offset = update_id + 1
 
-            # 关闭连接
-            response.close()
-            # 延迟指定时间后再次发送请求
-            time.sleep(delayTime)
-            # print("再次发送请求", delayTime)
+            # print("再次发送请求")
         except Exception as e:
             print("获取消息时发生错误：", str(e))
             # 处理异常并进行适当的错误处理。

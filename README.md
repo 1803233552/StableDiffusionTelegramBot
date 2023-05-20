@@ -1,5 +1,5 @@
 # StableDiffusionTelegramBot
-通过长轮询监听telegram的api调用StableDiffusion的api绘图。目前支持文生图。
+通过长轮询监听telegram的api获取消息，解析消息后调用StableDiffusion的api绘图。目前支持文生图。
 
 打包版下载地址 https://wwi.lanzoup.com/b0fgy69gh
 密码:40ld

@@ -25,6 +25,7 @@
 
 
 对机器人打出'/help'，获取默认例子提示
+
 ![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/0cdee482-3c5c-4696-8c37-40b665803d9d)
 
 

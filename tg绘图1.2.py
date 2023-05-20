@@ -43,7 +43,7 @@ def load_config():
     global defaultDenoising_strength
 
     # 读取配置文件
-    config = read_config('config2.0.txt')
+    config = read_config('config.txt')
 
     print(f"读取默认参数")
 
@@ -301,7 +301,7 @@ def draw(text_to_print, chat_id):
         print(f"保存图片:{filename}")
         temp_file = os.path.join(temp_dir, filename.replace("\\", "/"))  # 使用正斜杠 / 替换生成的文件路径中的反斜杠 \，以确保路径的正确性
         temp_file = temp_file.replace("\\", "/")
-        #print(f"temp_file:{temp_file}")
+        # print(f"temp_file:{temp_file}")
 
         # 保存图片
         image.save(temp_file, 'PNG', pnginfo=pnginfo)
@@ -316,20 +316,28 @@ def draw(text_to_print, chat_id):
         print("发送图片完成")
         print(response1.json())
         print("绘图完成")
+        print("\n")
 
 
 def main():
+    print("欢迎使用SDTGBOT")
     print("From https://github.com/1803233552/StableDiffusionTelegramBot")
     print("By DW_1803233552")
+    print("\n")
     # 读取配置
     load_config()
+    print("\n")
     print("开始监听")
+    print("\n")
+
+    session = requests.Session()
+    session.trust_env = True
 
     url = f'https://api.telegram.org/bot{TOKEN}/getUpdates'
     offset = None
 
     # 获取当前的最新消息的更新 ID
-    response = requests.get(url)
+    response = session.get(url)
     data = response.json()
     if data['ok'] and data['result']:
         offset = data['result'][-1]['update_id'] + 1
@@ -338,7 +346,7 @@ def main():
         try:
             # print("发送请求")
             params = {'offset': offset, 'timeout': 30}
-            response = requests.get(url, params=params)
+            response = session.get(url, params=params)
             data = response.json()
 
             if data['ok'] and data['result']:

@@ -35,3 +35,42 @@
 请注意ntags要放在最后。不使用这些参数也能正常绘图。
 
 偶尔会报错远程主机关闭了链接，这个不用管
+
+
+English
+
+By using long polling to listen to the Telegram API for messages, the script parses the messages and calls the StableDiffusion API to generate graphs. Currently, it supports generating charts for the biological sequence.
+
+Download link for the packaged version: https://wwi.lanzoup.com/b0fgy69gh Password: 40ld
+
+To register a Telegram bot and obtain your bot token and chat ID, you can refer to this link: https://hellodk.cn/post/743.
+
+For configuring some parameters, you can refer to this link: https://www.dengnz.com/2020/11/23/telegram-%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9a%84%e7%94%b3%e8%af%b7%e5%92%8c%e8%ae%be%e7%bd%ae%e5%9b%be%e6%96%87%e6%95%99%e7%a8%8b/
+
+Usage:
+
+1.Place the two files (tg绘图.py and config.txt) in the same folder.
+
+2.Fill in your bot token in the config.txt file.
+
+3.(Optional) Modify other default parameters. It is recommended to include your chat ID in the whitelist (e.g., "CHAT_ID = -123456789, -321654987,").
+
+4.Enable the API feature in StableDiffusion.
+
+5.Start the script.
+
+6.In Telegram, send the command /ht followed by your graph parameters. For example: /ht (eyewear_on_head: 1.2), (rating:safe: 1.2), (1girl: 1.2), (sunglasses: 1.2), (purple_hair), (gloves), (solo), jacket, holding, purple_eyes, blurry, breasts, phone, shirt, belt, cellphone, upper_body, blurry_background, bangs, sidelocks, white_shirt, long_hair, long_sleeves, looking_at_viewer, smartphone, closed_mouth, red_gloves, expressionless, hair_between_eyes, black_jacket, jacket_on_shoulders,Steps: 28, Sampler: DPM++ 2M Karras, CFG scale: 7.0, Seed: 613188881, Size: 512x768, Enable_hr:True,ntags: paintings, sketches, (worst quality:2),(low quality:2), (extra fingers:2), (extra toes:2),bad-picture-chill-75v, badhandv4, easynegative, negative_hand-neg, ng_deepnegative_v1_75t
+
+![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/7dc3467a-4d09-4704-8e5d-b424b8f5ac05)
+
+
+Send '/help' to the bot and get the default example prompts.
+
+![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/0cdee482-3c5c-4696-8c37-40b665803d9d)
+
+
+Parameters followed by ':' are translated as follows, for example, 'Steps: 28'. The current parameters that can be modified are: Steps (number of steps), Sampler (sampling method), CFG scale (correlation), Seed (random seed), Size (image size), Enable_hr (set to true to enable high resolution, also supports Chinese '高清：开'), and ntags (negative words). Both Chinese and English symbols can be used interchangeably.
+
+Please note that ntags should be placed at the end. It is also possible to generate graphs without using these parameters.
+
+Occasionally, there may be an error stating that the remote host has closed the connection. You can ignore this.

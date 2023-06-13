@@ -36,6 +36,8 @@
 
 偶尔会报错远程主机关闭了链接，这个不用管
 
+tg交流群：https://t.me/+X2u2e-OTlzczZmQ1
+
 
 English
 
@@ -74,3 +76,5 @@ Parameters followed by ':' are translated as follows, for example, 'Steps: 28'. 
 Please note that ntags should be placed at the end. It is also possible to generate graphs without using these parameters.
 
 Occasionally, there may be an error stating that the remote host has closed the connection. You can ignore this.
+
+Telegram group：https://t.me/+X2u2e-OTlzczZmQ1

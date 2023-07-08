@@ -30,9 +30,15 @@
 ![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/0cdee482-3c5c-4696-8c37-40b665803d9d)
 
 
-参数后面接':'，例如'Steps: 28'。目前可修改参数Steps（步数）、Sampler（采样方式）、CFG scale（相关性）、Seed（种子）、Size（图片大小）、Enable_hr（为true开启超分辨率，同时支持中文“高清：开”）、ntags（负面词）。可以中英文符号混用。
+参数后面接':'，例如'Steps: 28'。目前可修改参数Steps（步数）、Sampler（采样方式）、CFG scale（相关性）、Seed（种子）、Size（图片大小）、Enable_hr（为true开启超分辨率，同时支持中文“高清：开”）、ntags（负面词）、sl：10（一次生成多图）。可以中英文符号混用。
 
 请注意ntags要放在最后。不使用这些参数也能正常绘图。
+
+发送'/ht 随机'可以使用随机lora。
+
+发送'/lora 数字'可以查看lora
+
+发送'/ht 再来一张'或者点击'/htre'可以用上一个词条生成
 
 偶尔会报错远程主机关闭了链接，这个不用管
 
@@ -71,9 +77,15 @@ Send '/help' to the bot and get the default example prompts.
 ![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/0cdee482-3c5c-4696-8c37-40b665803d9d)
 
 
-Parameters followed by ':' are translated as follows, for example, 'Steps: 28'. The current parameters that can be modified are: Steps (number of steps), Sampler (sampling method), CFG scale (correlation), Seed (random seed), Size (image size), Enable_hr (set to true to enable high resolution, also supports Chinese '高清：开'), and ntags (negative words). Both Chinese and English symbols can be used interchangeably.
+The parameter is followed by a colon, for example, 'Steps: 28'. Currently, you can modify the parameters Steps (number of steps), Sampler (sampling method), CFG scale (correlation), Seed (random seed), Size (image size), Enable_hr (set to true to enable high resolution, supports Chinese "高清：开" as well), ntags (negative tags), and sl: 10 (generate multiple images at once). You can use a combination of Chinese and English symbols.
 
-Please note that ntags should be placed at the end. It is also possible to generate graphs without using these parameters.
+Please note that ntags should be placed at the end. The chart can be generated even without using these parameters.
+
+Sending '/ht 随机' will use a random Lora.
+
+Sending '/lora 数字' will display the Lora.
+
+Sending '/ht 再来一张' or clicking '/htre' will generate a chart using the previous entry.
 
 Occasionally, there may be an error stating that the remote host has closed the connection. You can ignore this.
 

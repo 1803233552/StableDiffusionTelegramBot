@@ -12,6 +12,10 @@ localurl = http://127.0.0.1:7860
 # 保存图片位置
 temp_dir = ./image
 
+# lora地址和lora预设,lora列表、随机lora、预设列表用到。替换为您的 lora 文件路径
+loraPath = L:\ap\novelai-webui-aki-v2\models\lora
+loraFilename = loraname_list_tg.csv
+
 # 允许的最大文件名长度
 max_filename_length = 100
 

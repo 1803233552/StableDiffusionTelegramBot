@@ -811,7 +811,8 @@ def help(chat_id, message_thread_id):
            "\n\n参数后面接':'，例如'Steps: 28'。目前可修改参数Steps（步数）、Sampler（采样方式）、CFG scale（相关性）、Seed（种子）、Size（图片大小）、Enable_hr（为true开启超分辨率，同时支持中文“高清：开”）、ntags（负面词）、sl：10（一次生成多图）。可以中英文符号混用。" \
            "\n请注意ntags要放在最后。不使用这些参数也能正常绘图。" \
            "\n\n发送'/ht 随机'可以使用随机lora。" \
-           "\n\n发送'/lora+数字'可以查看lora" \
+           "\n\n发送'/lora+数字'可以查看lora预设" \
+           "\n\n发送'/ht+预设名称'可以直接调用lora" \
            "\n\n发送'/ht 再来一张'或者点击'/htre'可以用上一个词条生成"
     if message_thread_id is None:
         send_message(text, chat_id, message_thread_id=None, temp_file=None)

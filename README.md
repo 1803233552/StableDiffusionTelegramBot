@@ -40,6 +40,9 @@
 
 发送'/ht 再来一张'或者点击'/htre'可以用上一个词条生成
 
+在预设文件中的第二列以及之后可以设置多个预设方便调用。直接/ht 你的预设，例如这里是/ht 心海就可以触发第一列的lora。![image](https://github.com/1803233552/StableDiffusionTelegramBot/assets/71918224/91d5abc9-9d5f-4125-8ae7-23ef09205fb8)
+
+
 偶尔会报错远程主机关闭了链接，这个不用管
 
 tg交流群：https://t.me/+X2u2e-OTlzczZmQ1

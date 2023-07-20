@@ -96,4 +96,6 @@ In the preset file, you can set multiple presets in the second column and beyond
 
 Occasionally, there may be an error stating that the remote host has closed the connection. You can ignore this.
 
+If the bot can't get the message (it doesn't react to the message after joining the group), follow this tutorial.[【Telegram】开启允许权限让你的TG可以实现bot直接监控频道](https://blog.csdn.net/m0_58606834/article/details/124493055)
+
 Telegram group：https://t.me/+X2u2e-OTlzczZmQ1

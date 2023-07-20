@@ -47,6 +47,8 @@
 
 tg交流群：https://t.me/+X2u2e-OTlzczZmQ1
 
+如果出现机器人无法获取消息（表现为加入群组后对消息没反应），请按照这个教程操作。[【Telegram】开启允许权限让你的TG可以实现bot直接监控频道](https://blog.csdn.net/m0_58606834/article/details/124493055)
+
 
 English
 

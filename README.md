@@ -45,7 +45,7 @@
 
 偶尔会报错远程主机关闭了链接，这个不用管
 
-tg交流群：https://t.me/+X2u2e-OTlzczZmQ1
+tg交流群：[https://t.me/+X2u2e-OTlzczZmQ1](https://t.me/+MGdPbJUNVuY2OWRl)
 
 如果出现机器人无法获取消息（表现为加入群组后对消息没反应），请按照这个教程操作。[【Telegram】开启允许权限让你的TG可以实现bot直接监控频道](https://blog.csdn.net/m0_58606834/article/details/124493055)
 
@@ -98,4 +98,4 @@ Occasionally, there may be an error stating that the remote host has closed the 
 
 If the bot can't get the message (it doesn't react to the message after joining the group), follow this tutorial.[【Telegram】开启允许权限让你的TG可以实现bot直接监控频道](https://blog.csdn.net/m0_58606834/article/details/124493055)
 
-Telegram group：https://t.me/+X2u2e-OTlzczZmQ1
+Telegram group：[https://t.me/+X2u2e-OTlzczZmQ1](https://t.me/+MGdPbJUNVuY2OWRl)https://t.me/+MGdPbJUNVuY2OWRl
